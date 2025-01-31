@@ -18,12 +18,10 @@
 
             <div class="d-flex align-center mb-2">
               <span class="font-weight-bold">Sample Voice:</span>
-              <p v-if="!sampleUrls || sampleUrls.length === 0">Loading audio samples...</p>
-              <div v-else class="d-flex align-center justify-between">
-                <audio controls class="audio-player">
-                  <source :src="sampleUrls[index]" type="audio/mpeg" />
-                </audio>
-              </div>
+              <audio :key="sampleUrls[index]" v-if="sampleUrls.length > 0" controls class="audio-player">
+                <source :src="sampleUrls[index]" type="audio/mpeg" />
+              </audio>
+              <p v-else>Loading audio samples...</p>
             </div>
           </div>
 
@@ -52,7 +50,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { useStore } from 'vuex';
 import PaginationComponent from '@/components/PaginationComponent.vue';
 
